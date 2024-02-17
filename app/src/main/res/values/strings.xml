@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Arcadia</string>
+    <string name="welcome_back">Bienvenue!</string>
+    <string name="login_to_continue">Connectez vous pour continuer</string>
+    <string name="email">Email</string>
+    <string name="password">Mot de passe</string>
+    <string name="sign_in">Se connecter</string>
+    <string name="create_new_account">Créer Un Nouveau Compte</string>
+    <string name="nouveau_compte">Nouveau Compte</string>
+    <string name="ajouter_une_image">Ajouter une image</string>
+    <string name="nom">Nom</string>
+    <string name="confirmer_mot_de_passe">Confirmer mot de passe</string>
+    <string name="s_inscrire">S\'inscrire</string>
+    <string name="prenom">Prénom</string>
+</resources>
