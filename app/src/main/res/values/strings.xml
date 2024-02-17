@@ -12,4 +12,6 @@
     <string name="confirmer_mot_de_passe">Confirmer mot de passe</string>
     <string name="s_inscrire">S\'inscrire</string>
     <string name="prenom">Prénom</string>
+    <string name="arcadia">Arcadia</string>
+    <string name="applogo">AppLogo</string>
 </resources>
