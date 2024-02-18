@@ -28,9 +28,11 @@
         android:layout_marginTop="@dimen/_12sdp"
         android:layout_marginEnd="@dimen/_16sdp"
         android:background="@drawable/background_icon"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:tint="@color/white" />
+        android:tint="@color/white"
+        app:riv_corner_radius="@dimen/_8sdp"/>
 
     <TextView
         android:id="@+id/textName"
