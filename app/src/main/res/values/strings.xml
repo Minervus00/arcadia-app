@@ -14,4 +14,6 @@
     <string name="prenom">Prénom</string>
     <string name="arcadia">Arcadia</string>
     <string name="applogo">AppLogo</string>
+    <string name="client_id">695282892275-5cgp30b9jibveku0p308ag188ctuq78i.apps.googleusercontent.com</string>
+    <string name="continuer_avec_google">Continuer avec Google</string>
 </resources>

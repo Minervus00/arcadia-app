@@ -116,5 +116,16 @@
             android:textSize="@dimen/_13ssp"
             android:textStyle="bold" />
 
+        <com.developer.gbuttons.GoogleSignInButton
+            android:id="@+id/sign_in_button"
+            android:layout_width="@dimen/_180sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_25sdp"
+            android:text="@string/continuer_avec_google"
+            android:textStyle="bold"
+            app:isDarkTheme="true"
+            app:cornerRadius="@dimen/_80sdp"
+            android:layout_gravity="center" />
+
     </LinearLayout>
 </ScrollView>
