@@ -106,26 +106,25 @@
 
         </FrameLayout>
 
+        <com.developer.gbuttons.GoogleSignInButton
+            android:id="@+id/googleSigninButton"
+            android:layout_width="@dimen/_180sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:text="@string/continuer_avec_google"
+            android:textStyle="bold"
+            app:isDarkTheme="true"
+            android:layout_gravity="center" />
+
         <TextView
             android:id="@+id/textCreateNewAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:text="@string/create_new_account"
             android:textColor="@color/primary"
             android:textSize="@dimen/_13ssp"
             android:textStyle="bold" />
-
-        <com.developer.gbuttons.GoogleSignInButton
-            android:id="@+id/sign_in_button"
-            android:layout_width="@dimen/_180sdp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_25sdp"
-            android:text="@string/continuer_avec_google"
-            android:textStyle="bold"
-            app:isDarkTheme="true"
-            app:cornerRadius="@dimen/_80sdp"
-            android:layout_gravity="center" />
 
     </LinearLayout>
 </ScrollView>

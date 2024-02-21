@@ -1,5 +1,7 @@
 package com.example.arcadia.activities;
 
+import static java.lang.System.exit;
+
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 import com.example.arcadia.databinding.ActivitySignUpBinding;
 import com.example.arcadia.utilities.Constants;
 import com.example.arcadia.utilities.PreferenceManager;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.ByteArrayOutputStream;
@@ -45,6 +48,7 @@ public class SignUpActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), SignInActivity.class)));
         binding.buttonSignUp.setOnClickListener(v -> {
             if (isValidSignUpDetails()) {
+                String inputEmail = binding.inputEmail.getText().toString();
                 signUp();
             }
         });
@@ -62,30 +66,44 @@ public class SignUpActivity extends AppCompatActivity {
     private void signUp() {
         loading(true);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        HashMap<String, Object> user = new HashMap<>();
-        user.put(Constants.KEY_NAME, binding.inputNom.getText().toString());
-        user.put(Constants.KEY_PNAME, binding.inputPrenom.getText().toString());
-        user.put(Constants.KEY_EMAIL, binding.inputEmail.getText().toString());
-        user.put(Constants.KEY_PASSWORD, binding.inputPasswd.getText().toString());
-        user.put(Constants.KEY_IMAGE, encodedImage);
+        // Check if email + passwd already exists
         db.collection(Constants.KEY_COLLECTION_USERS)
-                .add(user)
-                .addOnSuccessListener(documentReference -> {
-                    loading(false);
-                    preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
-                    preferenceManager.putString(Constants.KEY_USER_ID, documentReference.getId());
-                    preferenceManager.putString(Constants.KEY_NAME, binding.inputNom.getText().toString());
-                    preferenceManager.putString(Constants.KEY_PNAME, binding.inputPrenom.getText().toString());
-                    preferenceManager.putString(Constants.KEY_IMAGE, encodedImage);
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                })
-                .addOnFailureListener(exc -> {
-                    loading(false);
-                    showToast(exc.getMessage());
+                .whereEqualTo(Constants.KEY_EMAIL, binding.inputEmail.getText().toString())
+                .whereEqualTo(Constants.KEY_PASSWORD, binding.inputPasswd.getText().toString())
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful() && task.getResult() != null
+                            && task.getResult().getDocuments().size() > 0) {
+                        loading(false);
+                        showToast("Ce compte existe déjà");
+                    } else {
+                        HashMap<String, Object> user = new HashMap<>();
+                        user.put(Constants.KEY_NAME, binding.inputNom.getText().toString());
+                        user.put(Constants.KEY_PNAME, binding.inputPrenom.getText().toString());
+                        user.put(Constants.KEY_EMAIL, binding.inputEmail.getText().toString());
+                        user.put(Constants.KEY_PASSWORD, binding.inputPasswd.getText().toString());
+                        user.put(Constants.KEY_IMAGE, encodedImage);
+                        db.collection(Constants.KEY_COLLECTION_USERS)
+                                .add(user)
+                                .addOnSuccessListener(documentReference -> {
+                                    loading(false);
+                                    preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
+                                    preferenceManager.putString(Constants.KEY_USER_ID, documentReference.getId());
+                                    preferenceManager.putString(Constants.KEY_NAME, binding.inputNom.getText().toString());
+                                    preferenceManager.putString(Constants.KEY_PNAME, binding.inputPrenom.getText().toString());
+                                    preferenceManager.putString(Constants.KEY_IMAGE, encodedImage);
+                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
+                                })
+                                .addOnFailureListener(exc -> {
+                                    loading(false);
+                                    showToast(exc.getMessage());
+                                });
+                    }
                 });
     }
+
     private String encodeImage(Bitmap bitmap) {
         int previewWidth = 150;
         int previewHeight = bitmap.getHeight() * previewWidth / bitmap.getWidth();

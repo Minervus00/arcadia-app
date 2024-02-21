@@ -5,6 +5,7 @@ public class Constants {
     public static final String KEY_NAME = "nom";
     public static final String KEY_PNAME = "prenom";
     public static final String KEY_EMAIL = "email";
+    public static final String KEY_GOOGLE_USER = "googleUser";
     public static final String KEY_PASSWORD = "password";
     public static final String KEY_PREFERENCE_NAME = "chatAppPreference";
     public static final String KEY_IS_SIGNED_IN = "isSignedIn";
