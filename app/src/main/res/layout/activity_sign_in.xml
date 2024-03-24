@@ -106,15 +106,15 @@
 
         </FrameLayout>
 
-        <com.developer.gbuttons.GoogleSignInButton
-            android:id="@+id/googleSigninButton"
-            android:layout_width="@dimen/_180sdp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:text="@string/continuer_avec_google"
-            android:textStyle="bold"
-            app:isDarkTheme="true"
-            android:layout_gravity="center" />
+<!--        <com.developer.gbuttons.GoogleSignInButton-->
+<!--            android:id="@+id/googleSigninButton"-->
+<!--            android:layout_width="@dimen/_180sdp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/_15sdp"-->
+<!--            android:text="@string/continuer_avec_google"-->
+<!--            android:textStyle="bold"-->
+<!--            app:isDarkTheme="true"-->
+<!--            android:layout_gravity="center" />-->
 
         <TextView
             android:id="@+id/textCreateNewAccount"
