@@ -15,11 +15,11 @@ import com.example.arcadia.models.User;
 
 import java.util.List;
 
-public class UserAdapter  extends  RecyclerView.Adapter<UserAdapter.UserViewHolder> {
+public class UsersAdapter  extends  RecyclerView.Adapter<UsersAdapter.UserViewHolder> {
 
     private final List<User> users;
 
-    public UserAdapter(List<User> users) {
+    public UsersAdapter(List<User> users) {
         this.users = users;
     }
 

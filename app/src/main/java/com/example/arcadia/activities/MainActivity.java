@@ -42,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void setListeners() {
         binding.imageProfile.setOnClickListener(v -> signOut());
+        binding.fabNewChat.setOnClickListener(view ->
+                startActivity(new Intent(getApplicationContext(), UsersActivity.class))
+        );
     }
 
     private void loadUserDetails() {
@@ -65,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
                 preferenceManager.getString(Constants.KEY_USER_ID)
         );
         docRef.update(Constants.KEY_FCM_TOKEN, token)
-                .addOnSuccessListener(unused -> showToast("Token mis à jour avec succès"))
                 .addOnFailureListener(err -> showToast("Unable to update token"));
     }
 
