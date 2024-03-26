@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.example.arcadia.databinding.ActivityUsersBinding;
@@ -34,8 +35,8 @@ public class UsersActivity extends AppCompatActivity {
 
     private void setListeners() {
         binding.imageback.setOnClickListener(view ->
-//                onBackonBackPressedDispatcher.onBackPressed()
-                startActivity(new Intent(getApplicationContext(), MainActivity.class))
+                onBackPressed()
+//                startActivity(new Intent(getApplicationContext(), MainActivity.class))
         );
     }
 
@@ -45,9 +46,11 @@ public class UsersActivity extends AppCompatActivity {
         db.collection(Constants.KEY_COLLECTION_USERS)
                 .get()
                 .addOnCompleteListener(task -> {
+                    Log.i("TAB1", "Db fecth completed");
                     loading(false);
                     String currentUserId = preferenceManager.getString(Constants.KEY_USER_ID);
                     if (task.isSuccessful() && task.getResult() != null) {
+                        Log.i("TAB1", "Fetch successful");
                         List<User> users = new ArrayList<>();
                         for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
                             if (currentUserId.equals(queryDocumentSnapshot.getId())) {
@@ -66,10 +69,12 @@ public class UsersActivity extends AppCompatActivity {
                             UsersAdapter usersAdapter = new UsersAdapter(users);
                             binding.usersRecyclerView.setAdapter(usersAdapter);
                             binding.usersRecyclerView.setVisibility(View.VISIBLE);
+                            Log.i("TAB1", "Users displayed!");
                         } else {
                             showErrorMessage();
                         }
                     } else {
+                        Log.i("TAB1", "Fetch failed");
                         showErrorMessage();
                     }
                 });

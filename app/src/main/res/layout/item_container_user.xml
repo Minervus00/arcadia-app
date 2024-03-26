@@ -33,6 +33,7 @@
         android:maxLines="1"
         android:textColor="@color/primary_text"
         android:textSize="@dimen/_13ssp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/viewSupporter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageProfile" />

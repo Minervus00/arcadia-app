@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Widget.MaterialComponents.FloatingActionButton" parent="Widget.Design.FloatingActionButton">
+        <item name="shapeAppearanceOverlay">@style/RoundedCorner</item>
+    </style>
+
+    <style name="RoundedCorner">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item> <!-- Adjust the percentage as needed -->
+    </style>
+</resources>
